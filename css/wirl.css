@@ -1,0 +1,488 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Previene el desplazamiento horizontal */
+}
+
+.navbar {
+    position: fixed; /* Hace que la barra de navegación sea fija */
+    top: 0; /* La fija en la parte superior */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(168, 160, 160, 0.722), rgb(206, 201, 201));
+    color: white;
+    padding: 0;
+    margin: 0;
+    height: 100px; /* Reduce el alto de la barra de navegación */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.logo {
+    height: 80px; /* Incrementa el tamaño de la imagen */
+    max-height: 80px; /* Mantén el tamaño máximo de la imagen */
+    max-width: 80%; /* Establece un ancho máximo para la imagen */
+    margin: 10px; /* Centra la imagen */
+    border-radius: 5px;
+}
+
+.navbar-description {
+    margin-left: 15px; /* Ajusta el margen según sea necesario */
+    flex-grow: 1;
+    padding: 0;
+    font-size: 1.5em;
+    color: rgb(0, 0, 0);
+}
+
+.navbar-links {
+    display: flex;
+    margin: 0 10px 0 auto; /* Elimina margen a la derecha */
+    padding: 0;
+}
+
+.navbar-links a {
+    position: relative;
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar-links a::before, .navbar-links a::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-links a::before {
+    background-color: #4e3d3d; /* Primer color de la rayita */
+    left: 50%;
+}
+
+.navbar-links a::after {
+    background-color: #a2a2a8; /* Segundo color de la rayita */
+    right: 50%;
+}
+
+.navbar-links a:hover::before, .navbar-links a:hover::after {
+    width: 50%;
+    left: 0;
+    right: 0;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    background: gray;
+    width: 250px; /* Ajusta el ancho del menú */
+    height: 100vh;
+    position: fixed;
+    top: 100px; /* Coloca el menú móvil debajo de la barra de navegación */
+    left: -250px; /* Inicialmente fuera de la pantalla */
+    transition: left 0.3s ease; /* Transición suave */
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-nav a {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+    color: white;
+    text-align: left; /* Alinear el texto a la izquierda */
+    margin: 0; /* Elimina márgenes alrededor de los enlaces */
+}
+
+.mobile-nav a::before, .mobile-nav a::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav a::before {
+    background-color: #ff0000; /* Primer color de la rayita */
+    left: 50%;
+}
+
+.mobile-nav a::after {
+    background-color: #0000ff; /* Segundo color de la rayita */
+    right: 50%;
+}
+
+.mobile-nav a:hover::before, .mobile-nav a:hover::after {
+    width: 50%;
+    left: 0;
+    right: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        margin-right: 10px; /* Ajusta el margen según sea necesario */
+    }
+    
+    .logo {
+        max-height: 50px; /* Mantén el tamaño máximo de la imagen */
+        width: auto;
+    }
+
+    .navbar-links a {
+        margin-left: 10px;
+        text-decoration: none;
+        color: white;
+        padding: 0;
+    }
+
+    .section.inicio .content h1 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #ffffff; /* Ajusta el color del texto si es necesario */
+    }
+
+    .section.inicio .content p {
+        font-size: 1.2em;
+    }
+
+    .section.inicio .content img {
+        max-height: 190px; /* Ajusta el tamaño máximo de la imagen en móviles */
+        border-radius: 20px;
+    }
+}
+
+.section {
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.inicio {
+    background: linear-gradient(90deg, rgb(38, 62, 109), rgb(27, 67, 109));
+}
+
+.servicio {
+    background: linear-gradient(90deg, rgba(168, 160, 160, 0.722), rgb(206, 201, 201));
+}
+
+.agendar {
+    background-color: rgba(227, 211, 211, 0.245);
+}
+
+.content {
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Estilos adicionales para la sección de inicio */
+.section.inicio .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.section.inicio .content img {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px; /* Ajusta el tamaño máximo de la imagen */
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.section.inicio .content h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ffffff; /* Ajusta el color del texto si es necesario */
+}
+
+.section.inicio .content #number {
+    background-color: yellow;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1.5em;
+    color: #000; /* Ajusta el color del texto si es necesario */
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .section.inicio .content h1 {
+        font-size: 1.5em;
+    }
+
+    .section.inicio .content #number {
+        font-size: 1.2em;
+    }
+
+    .section.inicio .content img {
+        max-height: 150px; /* Ajusta el tamaño máximo de la imagen en móviles */
+    }
+}
+
+/* Estilos adicionales para la sección de servicio */
+.section.servicio .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.section.servicio .content h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333; /* Ajusta el color del texto si es necesario */
+}
+
+.section.servicio .content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #555; /* Ajusta el color del texto si es necesario */
+}
+
+.section.servicio .contact-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section.servicio .number-box {
+    background-color: yellow;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1.5em;
+    color: #000; /* Ajusta el color del texto si es necesario */
+    margin-right: 10px;
+}
+
+.section.servicio .small-gif {
+    width: 50px; /* Ajusta el tamaño del gif */
+    height: 50px; /* Ajusta el tamaño del gif */
+}
+
+.section.servicio .large-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Estilos para los títulos dinámicos */
+.section.servicio #dynamic-title {
+    font-size: 1.5em;
+    color: #000000; /* Ajusta el color del texto si es necesario */
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.section.servicio #changing-title {
+    font-size: 1.5em;
+    color: #333; /* Ajusta el color del texto si es necesario */
+    margin-bottom: 10px;
+    transition: color 1s ease; /* Transición para el cambio de color */
+}
+
+.section.servicio #changing-title.terapia-fisica {
+    color: red; /* Color para el título "Terapia Física" */
+}
+
+.section.servicio #changing-title.terapia-respiratoria {
+    color: blue; /* Color para el título "Terapia Respiratoria" */
+}
+
+.section.servicio #changing-title.terapia-lenguaje {
+    color: green; /* Color para el título "Terapia de Lenguaje" */
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .section.servicio .content h1 {
+        font-size: 1.8em;
+    }
+
+    .section.servicio .content p {
+        font-size: 1em;
+    }
+
+    .section.servicio .number-box {
+        font-size: 1.2em;
+    }
+
+    .section.servicio .small-gif {
+        width: 40px; /* Ajusta el tamaño del gif en móviles */
+        height: 40px; /* Ajusta el tamaño del gif en móviles */
+    }
+
+    .section.servicio .large-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
+.dynamic-title-box {
+    margin-top: 100px;
+  }
+  
+  .dynamic-title-box p {
+    font-weight: bold;
+    color: #000; /* color negro */
+  }
+  
+  .images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .images > div {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .images img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .whatsapp-btn {
+    background-color: #25d366;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .whatsapp-btn:hover {
+    background-color: #1a9445;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .seccion {
+    margin-top: 100px;
+    background-color: #f7f7f7; /* Fondo claro */
+    padding: 20px; /* Espacio entre el contenido y el borde */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    width: 80%; /* Ancho del 80% de la pantalla */
+    margin: 40px auto; /* Margen superior e inferior de 40px y centrado */
+  }
+  
+  .seccion h2 {
+    font-size: 24px; /* Tamaño de título */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 10px; /* Espacio entre el título y el párrafo */
+  }
+  
+  .seccion p {
+    font-size: 18px; /* Tamaño de párrafo */
+    margin-bottom: 20px; /* Espacio entre los párrafos */
+  }
+  
+  .seccion button {
+    background-color: #4CAF50; /* Fondo verde */
+    color: #fff; /* Texto blanco */
+    padding: 10px 20px; /* Espacio entre el texto y el borde */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cursor de mano */
+  }
+  
+  .seccion button:hover {
+    background-color: #3e8e41; /* Fondo verde oscuro al pasar el cursor */
+  }
+
+
+
+
+
+
+
+
+
+
+  .whatsapp-fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .whatsapp-fixed img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .whatsapp-fixed img:hover {
+    opacity: 0.8;
+  }
+  
+  .whatsapp-fixed img:hover::before {
+    content: "Vía WhatsApp";
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
